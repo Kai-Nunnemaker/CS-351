@@ -2,8 +2,7 @@
 
 ## Table of Contents  
 
-1. **Wireframe Triangle**  [Uploading triangle.html…]()
-
+1. **Wireframe Triangle**  
    [triangle.html](triangle.html)
 
 2. **10‑Sided Filled Polygon**  
