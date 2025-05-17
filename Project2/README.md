@@ -27,13 +27,11 @@ main program 0.007619994 s
 results output 0.108451951 s
 total run time 7.031054051 s
 
-r
-Copy
-Edit
+
 
 Compute the serial fraction \(s\) and parallel fraction \(p\):
 
-```markdown
+
 s = \frac{0.007619994 + 0.108451951}{7.031054051} = 0.016505 \quad(1.65\%)  
 p = 1 - s = 0.983495
 Plug into Amdahl’s formula with 
@@ -42,9 +40,6 @@ Plug into Amdahl’s formula with
 16
 n=16:
 
-markdown
-Copy
-Edit
 $$
 \mathrm{speedup}(16)
 = \frac{1}{\,s + \dfrac{p}{16}\,}
@@ -118,5 +113,4 @@ S
 Why it flattens:
 Even with ≈ 98 % of the work parallelizable, overhead from thread‑creation and synchronization, cache‑coherency traffic, and limited memory‑bandwidth means that after ~32 cores adding more threads yields diminishing—or even negative—returns. It’s just like too many people crowding a single turnstile: beyond a certain point extra folks only increase waiting time rather than throughput.
 
-Copy
-Edit
+
