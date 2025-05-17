@@ -20,97 +20,54 @@
 
 ![speedup_plot](https://github.com/user-attachments/assets/1555e821-43d5-4fc9-9ce4-134a332f5f2e)
 
-## Amdahl’s‑Law Prediction for 16 Threads
+## Amdahl’s‑Law Prediction (16 cores)
 
-**Timings (1 thread):**
-main program 0.007619994 s
-results output 0.108451951 s
-total run time 7.031054051 s
+Using the 1‑thread timings  
 
-
-
-Compute the serial fraction \(s\) and parallel fraction \(p\):
-
-
-s = \frac{0.007619994 + 0.108451951}{7.031054051} = 0.016505 \quad(1.65\%)  
-p = 1 - s = 0.983495
-Plug into Amdahl’s formula with 
-𝑛
-=
-16
-n=16:
+| stage | time (s) |
+|-------|---------|
+| main program (init) | 0.007 62 |
+| results output      | 0.108 45 |
+| total run‑time      | 7.031 05 |
 
 $$
-\mathrm{speedup}(16)
-= \frac{1}{\,s + \dfrac{p}{16}\,}
-= \frac{1}{\,0.016505 + \dfrac{0.983495}{16}\,}
-\approx 12.82
+s \;=\;\frac{0.007619994 + 0.108451951}{7.031054051}\;=\;0.01651,
+\qquad
+p \;=\;1-s\;=\;0.98349
 $$
-Linear Trend & Curve Flattening
-Early‑thread slope (1 → 7 threads):
 
-𝑆
-7
-−
-𝑆
-1
-7
-−
-1
-=
-4.71
-−
-1.00
-6
-≈
-0.62
-7−1
-S 
-7
-​
- −S 
-1
-​
- 
-​
- = 
-6
-4.71−1.00
-​
- ≈0.62
-Late‑thread slope (32 → 40 threads):
+Speed‑up for \(n = 16\) threads:
 
-𝑆
-40
-−
-𝑆
-32
-40
-−
-32
-=
-7.42
-−
-7.54
-8
-≈
-−
-0.015
-40−32
-S 
-40
-​
- −S 
-32
-​
- 
-​
- = 
-8
-7.42−7.54
-​
- ≈−0.015
-Why it flattens:
-Even with ≈ 98 % of the work parallelizable, overhead from thread‑creation and synchronization, cache‑coherency traffic, and limited memory‑bandwidth means that after ~32 cores adding more threads yields diminishing—or even negative—returns. It’s just like too many people crowding a single turnstile: beyond a certain point extra folks only increase waiting time rather than throughput.
+$$
+\text{speedup}(16)
+= \frac{1}{1 - p + \dfrac{p}{n}}
+= \frac{1}{\,0.01651 + \dfrac{0.98349}{16}\,}
+\approx 12.83
+$$
+
+---
+
+## Linear‑region slope & why the curve flattens
+
+*Early slope* (1 → 7 threads):  
+
+\[
+\frac{S_7 - S_1}{7 - 1}
+= \frac{4.71 - 1.00}{6}
+\approx 0.62
+\]
+
+*Late slope* (32 → 40 threads):  
+
+\[
+\frac{S_{40} - S_{32}}{40 - 32}
+= \frac{7.42 - 7.54}{8}
+\approx -0.015
+\]
+
+The curve flattens because thread‑management overhead, cache‑coherency traffic, and limited memory bandwidth grow with thread count; after ≈ 32 cores those costs outweigh the benefit of adding more workers—like crowding too many people through a single turnstile.
+
+
+
 
 
