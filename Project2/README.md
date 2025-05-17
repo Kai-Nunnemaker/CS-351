@@ -18,3 +18,4 @@
 |72| 1.91|16.98|28.93| 7.58|
 |80| 1.96|17.46|25.60| 7.38|
 
+![speedup_plot](https://github.com/user-attachments/assets/1555e821-43d5-4fc9-9ce4-134a332f5f2e)
